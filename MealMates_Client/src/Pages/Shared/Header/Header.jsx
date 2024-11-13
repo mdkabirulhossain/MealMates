@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Header = () => {
+
   const nav = <>
     <li><a>Item 1</a></li>
     <li>
@@ -15,7 +16,7 @@ const Header = () => {
     <li><a>Item 3</a></li>
   </>
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar max-w-screen-xl mx-auto fixed z-10 bg-opacity-30 text-white bg-black">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
