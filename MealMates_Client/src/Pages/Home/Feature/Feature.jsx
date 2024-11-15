@@ -13,11 +13,11 @@ const Feature = () => {
             >
             </SectionTitle>
             </div>
-            <div className='md:flex justify-center items-center gap-14 px-8 py-12 '>
+            <div className='md:flex justify-center items-center gap-14 px-8 pt-12 pb-32'>
                 <div>
                     <img src={feature} alt="" />
                 </div>
-                <div className='text-white'>
+                <div className='text-white bg-gray-500 bg-opacity-20'>
                     <p>March 20, 2023</p>
                     <p>WHERE CAN I GET SOME?</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error voluptate facere, deserunt dolores maiores quod nobis quas quasi. Eaque repellat recusandae ad laudantium tempore consequatur consequuntur omnis ullam maxime tenetur.</p>
