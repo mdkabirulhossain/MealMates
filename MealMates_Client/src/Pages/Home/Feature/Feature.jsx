@@ -5,7 +5,7 @@ import './Feature.css'
 
 const Feature = () => {
     return (
-        <div className='feature-items'>
+        <div className='feature-items bg-fixed'>
             <div className='pt-32'>
             <SectionTitle 
             subHeading="---Check it out---"
