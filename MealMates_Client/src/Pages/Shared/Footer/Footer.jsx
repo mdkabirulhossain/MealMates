@@ -25,7 +25,7 @@ const Footer = () => {
                 </div>
 
             </div>
-            <footer className="footer text-white footer-center bg-[#151515] text-base-content p-4">
+            <footer className="footer text-white footer-center bg-[#151515] p-4">
                 <aside>
                     <p>Copyright © {new Date().getFullYear()} - All right reserved by MealMates Ltd</p>
                 </aside>
