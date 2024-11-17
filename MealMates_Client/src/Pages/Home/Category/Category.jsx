@@ -1,6 +1,6 @@
 import React from 'react';
+// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -25,16 +25,15 @@ const Category = () => {
             
             </SectionTitle>
             <Swiper
-            slidesPerView={4}
-            spaceBetween={30}
-            centeredSlides={true}
-            pagination={{
-                clickable: true,
-            }}
-            modules={[Pagination]}
-            className="mySwiper mb-24"
-        >
-            <SwiperSlide>
+        slidesPerView={4}
+        spaceBetween={30}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination]}
+        className="mySwiper mb-24"
+      >
+        <SwiperSlide>
                 <img src={slide_img_01} alt="" />
                 <h3 className='text-4xl uppercase text-center text-white -mt-16'>Salads</h3>
             </SwiperSlide>
@@ -52,8 +51,8 @@ const Category = () => {
             <SwiperSlide><img src={slide_img_05} alt="" />
             <h3 className='text-4xl uppercase text-center text-white -mt-16'>Salads</h3>
             </SwiperSlide>
-                      
-        </Swiper>
+      </Swiper>
+            
         </div>
     );
 };
