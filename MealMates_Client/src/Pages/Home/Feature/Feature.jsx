@@ -5,7 +5,7 @@ import './Feature.css'
 
 const Feature = () => {
     return (
-        <div className='feature-items bg-fixed'>
+        <div className='feature-items bg-fixed bg-gray-500 bg-opacity-20'>
             <div className='pt-32'>
             <SectionTitle 
             subHeading="---Check it out---"
@@ -17,7 +17,7 @@ const Feature = () => {
                 <div>
                     <img src={feature} alt="" />
                 </div>
-                <div className='text-white bg-gray-500 bg-opacity-20'>
+                <div className='text-white '>
                     <p>March 20, 2023</p>
                     <p>WHERE CAN I GET SOME?</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error voluptate facere, deserunt dolores maiores quod nobis quas quasi. Eaque repellat recusandae ad laudantium tempore consequatur consequuntur omnis ullam maxime tenetur.</p>
