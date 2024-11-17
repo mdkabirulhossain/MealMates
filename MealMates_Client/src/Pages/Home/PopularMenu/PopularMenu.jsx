@@ -30,6 +30,9 @@ const PopularMenu = () => {
                 </MenuItems>)
             }
         </div>
+       <div className='flex justify-center pt-10'>
+       <button className="btn btn-outline text-black border-black border-b-2 border-0 uppercase">View Full Menu</button>
+       </div>
        </section>
     );
 };
