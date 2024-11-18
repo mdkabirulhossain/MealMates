@@ -1,19 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
   const nav = <>
-    <li><a>Item 1</a></li>
-    <li>
-      <details>
-        <summary>Parent</summary>
-        <ul className="p-2">
-          <li><a>Submenu 1</a></li>
-          <li><a>Submenu 2</a></li>
-        </ul>
-      </details>
-    </li>
-    <li><a>Item 3</a></li>
+    <li><Link to='/' className='uppercase'>Home</Link></li>
+    <li><Link to='/' className='uppercase'>Contact us</Link></li>
+    <li><Link to='/' className='uppercase'>Dashboard</Link></li>
+    <li><Link to='/menu' className='uppercase'>Our Menu</Link></li>
+    <li><Link to='/' className='uppercase'>Our Shop</Link></li>
+    
+   
   </>
   return (
     <div className="navbar max-w-screen-xl mx-auto fixed z-10 bg-opacity-30 text-white bg-black">
