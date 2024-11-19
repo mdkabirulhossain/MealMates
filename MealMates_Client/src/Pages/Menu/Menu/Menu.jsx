@@ -13,7 +13,7 @@ const Menu = () => {
            img={cover_back_img}
            title={"OUR MENU"}
            text={"Would you like to try a dish?"}
-           height={"600"}
+           height={"800"}
            ></Cover>
         </div>
     );
