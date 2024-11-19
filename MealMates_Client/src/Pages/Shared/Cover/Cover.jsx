@@ -3,9 +3,10 @@ import React from 'react';
 const Cover = ({img,title, text, height}) => {
     return (
         <div
-            className={`hero h-[${height}px]`}
+            className="hero"
             style={{
                 backgroundImage: `url(${img})`,
+                height: `${height}px`,
             }}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-white text-center">
