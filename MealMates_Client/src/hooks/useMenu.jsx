@@ -12,7 +12,7 @@ const useMenu = () => {
         })
 
     }, [])
-    return [menu, loading]
+    return [menu,loading]
 };
 
 export default useMenu;
