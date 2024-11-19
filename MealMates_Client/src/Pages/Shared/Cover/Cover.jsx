@@ -1,11 +1,17 @@
 import React from 'react';
+import { Parallax } from 'react-parallax';
 
 const Cover = ({img,title, text, height}) => {
     return (
-        <div
+        <Parallax
+        blur={{ min: -15, max: 15 }}
+        bgImage={img}
+        bgImageAlt="the dog"
+        strength={-200}
+    >
+       <div
             className="hero"
             style={{
-                backgroundImage: `url(${img})`,
                 height: `${height}px`,
             }}>
             <div className="hero-overlay bg-opacity-60"></div>
@@ -18,6 +24,8 @@ const Cover = ({img,title, text, height}) => {
                 </div>
             </div>
         </div>
+    </Parallax>
+        
     );
 };
 
