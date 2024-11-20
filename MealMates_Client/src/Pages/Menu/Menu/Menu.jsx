@@ -10,6 +10,7 @@ import dessert_back_img from '../../../assets/menu/dessert-bg.jpeg'
 const Menu = () => {
     const [menu] = useMenu();
     const offer = menu.filter(item => item.category ==="offered")
+    const desserts = menu.filter(item => item.category ==="dessert")
     return (
         <div>
            <Helmet>
@@ -37,6 +38,10 @@ const Menu = () => {
            text={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}
            height={"700"}
            ></Cover>
+
+           {/* dessert food list  */}
+
+           <Popular items={desserts}></Popular>
         </div>
     );
 };
