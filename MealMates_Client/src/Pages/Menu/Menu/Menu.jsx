@@ -30,6 +30,7 @@ const Menu = () => {
            </SectionTitle>
 
            <Popular items={offer}></Popular>
+           {/* Dessert  */}
            <Cover 
            img={dessert_back_img}
            title={"Desserts"}
