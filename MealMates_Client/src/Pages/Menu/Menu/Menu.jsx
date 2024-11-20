@@ -3,9 +3,9 @@ import { Helmet} from 'react-helmet-async';
 import Cover from '../../Shared/Cover/Cover';
 import cover_back_img from '../../../assets/menu/banner3.jpg'
 import useMenu from '../../../hooks/useMenu';
-import MenuItems from '../../Shared/MenuItems/MenuItems';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import Popular from '../Popular/Popular';
+import dessert_back_img from '../../../assets/menu/dessert-bg.jpeg'
 
 const Menu = () => {
     const [menu] = useMenu();
@@ -30,7 +30,12 @@ const Menu = () => {
            </SectionTitle>
 
            <Popular items={offer}></Popular>
-         
+           <Cover 
+           img={dessert_back_img}
+           title={"Desserts"}
+           text={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}
+           height={"700"}
+           ></Cover>
         </div>
     );
 };
