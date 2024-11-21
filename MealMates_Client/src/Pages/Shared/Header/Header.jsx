@@ -8,9 +8,9 @@ const Header = () => {
     <li><Link to='/' className='uppercase'>Contact us</Link></li>
     <li><Link to='/' className='uppercase'>Dashboard</Link></li>
     <li><Link to='/menu' className='uppercase'>Our Menu</Link></li>
-    <li><Link to='/' className='uppercase'>Our Shop</Link></li>
-    
-   
+    <li><Link to='/shop' className='uppercase'>Our Shop</Link></li>
+
+
   </>
   return (
     <div className="navbar max-w-screen-xl mx-auto fixed z-10 bg-opacity-30 text-white bg-black">
@@ -36,7 +36,7 @@ const Header = () => {
             {nav}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">MealMates</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
