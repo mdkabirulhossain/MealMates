@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SingleCard = ({ item }) => {
-    const { name, image, recipe } = item;
+    const { name, image, recipe, price } = item;
     return (
         <div className="card card-compact bg-base-100 w-96 shadow-xl">
             <figure>
@@ -9,6 +9,7 @@ const SingleCard = ({ item }) => {
                     src={image}
                     alt={name} />
             </figure>
+            <p className='bg-slate-900 absolute right-0 text-white mr-4 mt-4 px-2'>${price}</p>
             <div className="card-body items-center text-center">
                 <h2 className="card-title">{name}</h2>
                 <p>{recipe}</p>
