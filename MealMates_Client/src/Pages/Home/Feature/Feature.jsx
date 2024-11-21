@@ -2,6 +2,7 @@ import React from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import feature from '../../../assets/home/featured.jpg'
 import './Feature.css'
+import { Link } from 'react-router-dom';
 
 const Feature = () => {
     return (
@@ -21,7 +22,9 @@ const Feature = () => {
                     <p>March 20, 2023</p>
                     <p>WHERE CAN I GET SOME?</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error voluptate facere, deserunt dolores maiores quod nobis quas quasi. Eaque repellat recusandae ad laudantium tempore consequatur consequuntur omnis ullam maxime tenetur.</p>
+                    <Link to='/shop'>
                     <button className="btn btn-outline text-white border-white border-b-2 border-t-0 border-x-0 uppercase">Order Now</button>
+                    </Link>
                 </div>
             </div>
         </div>
