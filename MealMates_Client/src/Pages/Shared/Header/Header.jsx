@@ -32,11 +32,11 @@ const Header = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            className="menu menu-sm dropdown-content bg-black bg-opacity-30 rounded-box z-[1] mt-3 w-52 p-2 shadow">
             {nav}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">MealMates</a>
+        <a className="btn btn-ghost text-xl uppercase"><Link to='/'>MealMates</Link></a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import ShopBanner from '../ShopBanner/ShopBanner';
+import React_Tabs from '../Tabs/React_Tabs';
 
 const Shop = () => {
     return (
@@ -9,6 +10,7 @@ const Shop = () => {
                 <title>MealMates | Our Shop</title>
             </Helmet>
             <ShopBanner></ShopBanner>
+            <React_Tabs></React_Tabs>
         </div>
     );
 };
