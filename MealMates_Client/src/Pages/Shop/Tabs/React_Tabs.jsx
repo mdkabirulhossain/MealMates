@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import SingleCard from '../../Home/Card/SingleCard';
 import useMenu from '../../../hooks/useMenu';
+import ShopCard from '../ShopCard/ShopCard';
 
 const React_Tabs = () => {
     const [tabIndex, setTabIndex] = useState(0);
@@ -23,64 +24,19 @@ const React_Tabs = () => {
                 <Tab >DRINK</Tab>
             </TabList>
             <TabPanel>
-            <div className='grid grid-cols-2 lg:grid-cols-3 gap-4 mb-16'>
-                {
-                    salad.map(item=><SingleCard
-                    key={item._id}
-                    item={item}
-                    >
-
-                    </SingleCard>)
-                }
-            </div>
+                <ShopCard items={salad}></ShopCard>
             </TabPanel>
             <TabPanel>
-            <div className='grid grid-cols-2 lg:grid-cols-3 gap-4 mb-16'>
-                {
-                    pizza.map(item=><SingleCard
-                    key={item._id}
-                    item={item}
-                    >
-
-                    </SingleCard>)
-                }
-            </div>
+            <ShopCard items={pizza}></ShopCard>
             </TabPanel>
             <TabPanel>
-            <div className='grid grid-cols-2 lg:grid-cols-3 gap-4 mb-16'>
-                {
-                    soup.map(item=><SingleCard
-                    key={item._id}
-                    item={item}
-                    >
-
-                    </SingleCard>)
-                }
-            </div>
+            <ShopCard items={soup}></ShopCard>
             </TabPanel>
             <TabPanel>
-            <div className='grid grid-cols-2 lg:grid-cols-3 gap-4 mb-16'>
-                {
-                    dessert.map(item=><SingleCard
-                    key={item._id}
-                    item={item}
-                    >
-
-                    </SingleCard>)
-                }
-            </div>
+            <ShopCard items={dessert}></ShopCard>
             </TabPanel>
             <TabPanel>
-            <div className='grid grid-cols-2 lg:grid-cols-3 gap-4 mb-16'>
-                {
-                    drinks.map(item=><SingleCard
-                    key={item._id}
-                    item={item}
-                    >
-
-                    </SingleCard>)
-                }
-            </div>
+            <ShopCard items={drinks}></ShopCard>
             </TabPanel>
            
         </Tabs>
