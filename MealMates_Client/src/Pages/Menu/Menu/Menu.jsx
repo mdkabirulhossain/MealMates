@@ -36,7 +36,7 @@ const Menu = () => {
 
            </SectionTitle>
 
-           <Popular items={offer}></Popular>
+           <Popular items={offer} title={"salad"}></Popular>
            {/* Dessert  */}
            <Cover 
            img={dessert_back_img}
@@ -47,7 +47,7 @@ const Menu = () => {
 
            {/* dessert food list  */}
 
-           <Popular items={desserts}></Popular>
+           <Popular items={desserts} title={"desserts"} ></Popular>
            {/* Pizza  */}
            <Cover 
            img={pizza_back_img}
@@ -58,7 +58,7 @@ const Menu = () => {
 
            {/*Pizza food list  */}
 
-           <Popular items={Pizza}></Popular>
+           <Popular items={Pizza} title={"pizza"}></Popular>
 
            {/* Salad  */}
            <Cover 
@@ -70,7 +70,7 @@ const Menu = () => {
 
            {/*Salad food list  */}
 
-           <Popular items={Salad}></Popular>
+           <Popular items={Salad} title={"salad"}></Popular>
 
            {/* soup */}
            <Cover 
@@ -82,7 +82,7 @@ const Menu = () => {
 
            {/*soup food list  */}
 
-           <Popular items={Soup}></Popular>
+           <Popular items={Soup} title={"soup"}></Popular>
         </div>
     );
 };
