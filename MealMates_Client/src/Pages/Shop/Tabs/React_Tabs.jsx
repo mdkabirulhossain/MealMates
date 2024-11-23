@@ -4,9 +4,15 @@ import 'react-tabs/style/react-tabs.css';
 import SingleCard from '../../Home/Card/SingleCard';
 import useMenu from '../../../hooks/useMenu';
 import ShopCard from '../ShopCard/ShopCard';
+import { useParams } from 'react-router-dom';
 
 const React_Tabs = () => {
-    const [tabIndex, setTabIndex] = useState(0);
+    const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks']
+    // Get the url 
+    // category are name are used in shop routes
+    const {category} = useParams();
+    const initialIndex = categories.indexOf(category);
+    const [tabIndex, setTabIndex] = useState(initialIndex);
     const[menu] = useMenu();
     const pizza = menu.filter(item => item.category ==="pizza")
     const salad = menu.filter(item =>item.category ==="salad")

@@ -47,7 +47,7 @@ const Menu = () => {
 
            {/* dessert food list  */}
 
-           <Popular items={desserts} title={"desserts"} ></Popular>
+           <Popular items={desserts} title={"dessert"} ></Popular>
            {/* Pizza  */}
            <Cover 
            img={pizza_back_img}
