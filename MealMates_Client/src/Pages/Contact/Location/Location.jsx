@@ -13,13 +13,13 @@ const Location = () => {
 
             </SectionTitle>
 
-            <div className='flex justify-between gap-6 mx-40 mb-16'>
+            <div className='flex justify-between gap-x-6 mx-40 mb-16'>
                 <div className="flex flex-col justify-center items-center w-96 border-[#E8E8E8] border-2">
                     <button className="flex justify-center items-center bg-[#D1A054] text-white w-full py-2">
                         <BsTelephoneOutbound className="text-2xl" />
                     </button>
                     <div className='bg-white w-full pt-0 p-6'>
-                    <div className="bg-[#F3F3F3] py-10">
+                    <div className="bg-[#F3F3F3] py-14">
                         <h2 className="uppercase text-center font-bold">Phone</h2>
                         <p className="text-center">+38 (012) 34 56 789</p>
                     </div>
@@ -30,7 +30,7 @@ const Location = () => {
                         <FaLocationDot className="text-2xl" />
                     </button>
                     <div className='bg-white w-full pt-0 p-6'>
-                    <div className="bg-[#F3F3F3] py-10">
+                    <div className="bg-[#F3F3F3] py-14">
                         <h2 className="uppercase text-center font-bold">Address</h2>
                         <p className="text-center">Bashundhara, Dhaka</p>
                     </div>
@@ -41,7 +41,7 @@ const Location = () => {
                         <FaClock className="text-2xl" />
                     </button>
                     <div className='bg-white w-full pt-0 p-6'>
-                    <div className="bg-[#F3F3F3] py-10">
+                    <div className="bg-[#F3F3F3] py-11">
                         <h2 className="uppercase text-center font-bold">Working Hour</h2>
                         <p className="text-center">Mon - Fri: 08:00 - 22:00 <br />
                         Sat - Sun: 10:00 - 23:00</p>

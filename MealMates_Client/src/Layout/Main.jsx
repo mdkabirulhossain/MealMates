@@ -9,9 +9,9 @@ const Main = () => {
     const noHeaderFooter = location.pathname.includes("login");
     return (
         <div>
-            {noHeaderFooter || <Header></Header>}
+            {!noHeaderFooter && <Header></Header>}
             <Outlet></Outlet>
-            {noHeaderFooter || <Footer></Footer>}
+            {!noHeaderFooter && <Footer></Footer>}
         </div>
     );
 };
