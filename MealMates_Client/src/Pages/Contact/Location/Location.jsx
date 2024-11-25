@@ -13,7 +13,7 @@ const Location = () => {
 
             </SectionTitle>
 
-            <div className='flex justify-between gap-6 mx-40'>
+            <div className='flex justify-between gap-6 mx-40 mb-16'>
                 <div className="flex flex-col justify-center items-center w-96 border-[#E8E8E8] border-2">
                     <button className="flex justify-center items-center bg-[#D1A054] text-white w-full py-2">
                         <BsTelephoneOutbound className="text-2xl" />

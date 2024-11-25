@@ -2,6 +2,7 @@ import React from 'react';
 import ContactBanner from '../ContactBanner/ContactBanner';
 import { Helmet } from 'react-helmet-async';
 import Location from '../Location/Location';
+import ContactForm from '../ContactForm/ContactForm';
 
 const Contact = () => {
     return (
@@ -11,6 +12,7 @@ const Contact = () => {
             </Helmet>
             <ContactBanner></ContactBanner>
             <Location></Location>
+            <ContactForm></ContactForm>
         </div>
     );
 };
