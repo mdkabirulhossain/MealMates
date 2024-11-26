@@ -1,15 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import './Login.css';
 import login_img from '../../assets/others/authentication2.png';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { FaGithub } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
-
+    const{signIn} = useContext(AuthContext);
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, []);
@@ -21,6 +22,17 @@ const Login = () => {
         const password = form.password.value;
         console.log('Email:', email, 'Password:', password);
         form.reset(); // Reset form inputs
+        signIn(email, password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log("User:", user)
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
     };
 
     const handleCaptchaChange = (event) => {
