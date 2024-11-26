@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './SignUp.css'
 import login_img from '../../assets/others/authentication2.png'
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { FaGithub } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
 const SignUp = () => {
-
+    const{createUser} = useContext(AuthContext);
     const handleLogin = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -14,6 +15,18 @@ const SignUp = () => {
         const password = form.password.value;
         console.log(name, email, password);
         form.reset();
+        createUser(email, password)
+        .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+            console.log(user)
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+          });
     }
     return (
         <div className='signUp px-32 py-10'>
