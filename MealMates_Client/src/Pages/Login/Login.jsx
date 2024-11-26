@@ -6,6 +6,7 @@ import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { FaGithub } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
     const captchaRef = useRef(null);
@@ -49,7 +50,11 @@ const Login = () => {
     };
 
     return (
-        <div className='login px-32 py-10'>
+        <div>
+            <Helmet>
+                <title>MealMates | Sign In</title>
+            </Helmet>
+            <div className='login px-32 py-10'>
             <div className='login-form flex justify-center items-center border-[#00000040] border-4 p-10'
                 style={{ boxShadow: '10px 10px 10px 10px #00000040' }}>
                 <div className='w-1/2'>
@@ -117,6 +122,7 @@ const Login = () => {
                     </form>
                 </div>
             </div>
+        </div>
         </div>
     );
 };

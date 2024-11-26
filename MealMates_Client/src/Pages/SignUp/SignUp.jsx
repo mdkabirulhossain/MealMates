@@ -6,6 +6,7 @@ import { FaGithub } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { useForm } from "react-hook-form";
+import { Helmet } from 'react-helmet-async';
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
@@ -33,7 +34,11 @@ const SignUp = () => {
     //       });
     // }
     return (
-        <div className='signUp px-32 py-10'>
+        <div>
+            <Helmet>
+                <title>MealMates | Sign Up</title>
+            </Helmet>
+            <div className='signUp px-32 py-10'>
             <div className='login-form flex flex-row-reverse justify-center items-center border-[#00000040] border-4 p-10'
                 style={{ boxShadow: '10px 10px 10px 10px #00000040' }}>
 
@@ -90,6 +95,7 @@ const SignUp = () => {
 
 
             </div>
+        </div>
         </div>
     );
 };
