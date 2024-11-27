@@ -30,10 +30,16 @@ async function run() {
     // const menu = database.collection("menu");
     
     const menuCollection = client.db("MealMatesDB").collection("menu");
+    const reviewCollection = client.db("MealMatesDB").collection("reviews");
     
     //get menu collection all the data
     app.get('/menu', async(req, res)=>{
         const result = await menuCollection.find().toArray();
+        res.send(result);
+    })
+    //get review collection all the data
+    app.get('/reviews', async(req, res)=>{
+        const result = await reviewCollection.find().toArray();
         res.send(result);
     })
     // Send a ping to confirm a successful connection
