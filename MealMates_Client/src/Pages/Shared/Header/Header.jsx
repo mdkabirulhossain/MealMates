@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Providers/AuthProvider';
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut()
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        console.log(user)
+        // ...
+
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Log Out Successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      })
+      .catch(error =>console.log(error))
+  }
   const nav = (
     <>
       <li className="uppercase"><Link to="/">Home</Link></li>
@@ -9,7 +30,16 @@ const Header = () => {
       <li className="uppercase"><Link to="/">Dashboard</Link></li>
       <li className="uppercase"><Link to="/menu">Our Menu</Link></li>
       <li className="uppercase"><Link to="/shop/salad">Our Shop</Link></li>
-      <li className="uppercase"><Link to="/login">Login</Link></li>
+      {
+        user ?
+          <>
+            <li onClick={handleLogout} className="uppercase"><Link>Logout</Link></li>
+          </>
+          :
+          <>
+            <li className="uppercase"><Link to="/login">Login</Link></li>
+          </>
+      }
     </>
   );
 
@@ -51,7 +81,7 @@ const Header = () => {
 
       </div>
 
-     
+
     </div>
   );
 };
