@@ -77,10 +77,17 @@ const SignUp = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
+                                    <span className="label-text font-bold">Photo URL</span>
+                                </label>
+                                <input type="text" {...register("PhotoURL", { required: true })} name='PhotoURL' placeholder="Enter your email" className="input input-bordered focus:outline-none" />
+                                {errors.PhotoURL && <span className='text-red-600'>Photo URL is required</span>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
                                     <span className="label-text font-bold">Email</span>
                                 </label>
                                 <input type="email" {...register("email", { required: true })} name='email' placeholder="email" className="input input-bordered focus:outline-none" />
-                                {errors.email && <span>This field is required</span>}
+                                {errors.email && <span className='text-red-600'>email is required</span>}
 
                             </div>
                             <div className="form-control">
