@@ -4,7 +4,7 @@ import login_img from '../../assets/others/authentication2.png';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { FaGithub } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2'
@@ -13,6 +13,11 @@ const Login = () => {
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
     const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
+    console.log(from)
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, []);
@@ -37,6 +42,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                   });
+                  navigate(from, {replace: true});
             })
             .catch((error) => {
                 console.log(error);
