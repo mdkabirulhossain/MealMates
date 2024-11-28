@@ -9,6 +9,8 @@ import Shop from "../Pages/Shop/Shop/Shop";
 import Contact from "../Pages/Contact/Contact/Contact";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import PrivateRoutes from "./PrivateRoutes";
+import Secret from "../Pages/Shared/Secret/Secret";
 
   export const router = createBrowserRouter([
     {
@@ -38,6 +40,10 @@ import SignUp from "../Pages/SignUp/SignUp";
         {
           path:"/signup",
           element:<SignUp></SignUp>
+        },
+        {
+          path:"/secret",
+          element:<PrivateRoutes><Secret></Secret></PrivateRoutes>
         },
       ]
     },
