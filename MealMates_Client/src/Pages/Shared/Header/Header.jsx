@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import { FaShoppingCart } from "react-icons/fa";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -21,7 +22,7 @@ const Header = () => {
           timer: 1500
         });
       })
-      .catch(error =>console.log(error))
+      .catch(error => console.log(error))
   }
   const nav = (
     <>
@@ -30,6 +31,13 @@ const Header = () => {
       <li className="uppercase"><Link to="/secret">Secret</Link></li>
       <li className="uppercase"><Link to="/menu">Our Menu</Link></li>
       <li className="uppercase"><Link to="/shop/salad">Our Shop</Link></li>
+      <li className="uppercase"><Link to="/">
+        <button className="btn">
+          <FaShoppingCart />
+          <div className="badge badge-secondary">+0</div>
+        </button>
+      </Link></li>
+
       {
         user ?
           <>

@@ -35,10 +35,11 @@ const ShopCard = ({ items }) => {
                 pagination={pagination}
                 modules={[Pagination]}
                 className="mySwiper"
+
             >
                 {
-                    chunkedItems.map(chunk=>
-                        <SwiperSlide>
+                    chunkedItems.map((chunk, index) => (
+                        <SwiperSlide key={index}>
                     <div className='grid grid-cols-2 lg:grid-cols-3 gap-4 mb-16'>
                         {
                             chunk.map(item => <SingleCard
@@ -50,7 +51,7 @@ const ShopCard = ({ items }) => {
                         }
                     </div>
                 </SwiperSlide>
-                    )
+                    ))
                 }
 
             </Swiper>

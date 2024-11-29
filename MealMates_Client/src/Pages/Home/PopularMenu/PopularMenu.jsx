@@ -36,7 +36,7 @@ const PopularMenu = () => {
                 }
             </div>
             <div className='flex justify-center pt-10'>
-                <Link to='/shop'>
+                <Link to='/shop/salad'>
                 <button className="btn btn-outline text-black border-black border-b-2 border-0 uppercase">View Full Menu</button>
                 </Link>  
             </div>

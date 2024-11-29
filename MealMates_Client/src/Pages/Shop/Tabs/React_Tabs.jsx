@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 
 const React_Tabs = () => {
     const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks']
-    // Get the url 
+    // Get the url using useParams
     // category are name are used in shop routes
     const {category} = useParams();
     const initialIndex = categories.indexOf(category);
