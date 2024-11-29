@@ -31,6 +31,7 @@ async function run() {
     
     const menuCollection = client.db("MealMatesDB").collection("menu");
     const reviewCollection = client.db("MealMatesDB").collection("reviews");
+    const cartsCollection = client.db("MealMatesDB").collection("carts");
     
     //get menu collection all the data
     app.get('/menu', async(req, res)=>{
@@ -41,6 +42,13 @@ async function run() {
     app.get('/reviews', async(req, res)=>{
         const result = await reviewCollection.find().toArray();
         res.send(result);
+    })
+    //cart collection create
+    app.post('/carts', async(req, res)=>{
+      const cartItem = req.body;
+      const result = await cartsCollection.insertOne(cartItem);
+      res.send(result);
+
     })
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
