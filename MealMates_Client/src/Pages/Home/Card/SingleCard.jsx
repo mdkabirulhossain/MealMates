@@ -10,7 +10,7 @@ const SingleCard = ({ item }) => {
     const handleCardButton = food =>{
         if(user && user.email){
             //send cart item to database
-            console.log(food)
+            // console.log(food)
         }
         else{
             Swal.fire({
