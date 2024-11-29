@@ -3,16 +3,16 @@ import './SignUp.css'
 import login_img from '../../assets/others/authentication2.png'
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { FaGithub } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { useForm } from "react-hook-form";
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2'
 
 const SignUp = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser } = useContext(AuthContext);
-
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate();
     const onSubmit = data =>{
         console.log(data);
         createUser(data.email, data.password)
@@ -20,6 +20,11 @@ const SignUp = () => {
                     // Signed up 
                     const user = userCredential.user;
                     console.log(user)
+                    updateUserProfile(data.name, data.PhotoURL)
+                    .then(()=>{
+                        console.log("User profile info updated")
+                        reset();
+                    })
                     // ...
                     Swal.fire({
                         position: "top-end",
@@ -28,6 +33,8 @@ const SignUp = () => {
                         showConfirmButton: false,
                         timer: 1500
                       });
+                      navigate('/');
+                    //   If i want then here I can use logout then navigate login page 
                   })
                   
     }
