@@ -41,6 +41,7 @@ const Header = () => {
       {
         user ?
           <>
+            {/* <li className='uppecase'>{user.displayName}</li> */}
             <li onClick={handleLogout} className="uppercase"><Link>Logout</Link></li>
           </>
           :
