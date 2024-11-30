@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useCart from '../../../hooks/useCart';
 
 const SingleCard = ({ item }) => {
     const { name, image, recipe, price, _id } = item;
@@ -11,8 +12,12 @@ const SingleCard = ({ item }) => {
     const axiosSecure = useAxiosSecure();
     const navigation = useNavigate();
     const location = useLocation();
-    const handleCardButton = food =>{
-        console.log(food, user, user.user.email)
+    //we only use refetch
+    //const[ , refethc] = .... is also currect bcz here we use only refetch
+    const[cart, refetch] = useCart();
+    
+    const handleCardButton = () =>{
+        // console.log(food, user, user.user.email)
         if(user && user.user.email){
             //send cart item to database
             // console.log(food)
@@ -35,6 +40,8 @@ const SingleCard = ({ item }) => {
                     showConfirmButton: false,
                     timer: 1500
                   });
+                  //refetch the cart to update cart
+                  refetch();
             })
         }
         else{
@@ -68,7 +75,7 @@ const SingleCard = ({ item }) => {
                 <p>{recipe}</p>
                 <div className="card-actions">
                 <button
-                onClick={()=>handleCardButton(item)}
+                onClick={handleCardButton}
                 className="btn btn-outline text-[#BB8506] bg-[#E8E8E8] border-[#BB8506] border-b-2 border-0 uppercase">Add To Cart</button>
                 </div>
             </div>
