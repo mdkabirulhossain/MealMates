@@ -2,6 +2,8 @@ import { FaCalendarAlt, FaCalendarCheck, FaHome, FaShoppingCart, FaStreetView } 
 import { NavLink, Outlet } from "react-router-dom";
 import { MdOutlinePayment } from "react-icons/md";
 import { BiCommentDetail } from "react-icons/bi";
+import { IoMdMail, IoMdMenu } from "react-icons/io";
+import { GiShoppingBag } from "react-icons/gi";
 
 const Dashboard = () => {
     return (
@@ -38,6 +40,27 @@ const Dashboard = () => {
                         <NavLink to='/dashboard/myBooking'>
                         <FaCalendarCheck></FaCalendarCheck>
                             My Booking</NavLink>
+                    </li>
+                    <div className="divider"></div>
+                    <li>
+                        <NavLink to='/'>
+                            <FaHome/>
+                           Home</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/menu'>
+                           <IoMdMenu></IoMdMenu> 
+                           Menu</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/shop/salad'>
+                            <GiShoppingBag/>
+                           Shop</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/'>
+                        <IoMdMail></IoMdMail>
+                           Contact</NavLink>
                     </li>
                 </ul>
             </div>
