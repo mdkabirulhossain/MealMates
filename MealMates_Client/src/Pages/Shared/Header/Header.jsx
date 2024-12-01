@@ -32,7 +32,7 @@ const Header = () => {
       <li className="uppercase"><Link to="/secret">Secret</Link></li>
       <li className="uppercase"><Link to="/menu">Our Menu</Link></li>
       <li className="uppercase"><Link to="/shop/salad">Our Shop</Link></li>
-      <li className="uppercase"><Link to="/">
+      <li className="uppercase"><Link to="/dashboard/cart">
         <button className="btn">
           <FaShoppingCart />
           <div className="badge badge-secondary">+{cart.length}</div>
