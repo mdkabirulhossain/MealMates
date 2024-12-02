@@ -4,8 +4,10 @@ import { MdOutlinePayment } from "react-icons/md";
 import { BiCommentDetail } from "react-icons/bi";
 import { IoMdMail, IoMdMenu } from "react-icons/io";
 import { GiShoppingBag } from "react-icons/gi";
+import useCart from "../hooks/useCart";
 
 const Dashboard = () => {
+    const [cart] = useCart();
     return (
         <div className="h-screen flex">
             {/* dashboard sidebar  */}
@@ -29,7 +31,7 @@ const Dashboard = () => {
                     <li>
                         <NavLink to='/dashboard/cart'>
                             <FaShoppingCart></FaShoppingCart>
-                            My Cart</NavLink>
+                            My Cart ({cart.length})</NavLink>
                     </li>
                     <li>
                         <NavLink to='/dashboard/addReview'>
