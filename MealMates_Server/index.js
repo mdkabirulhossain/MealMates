@@ -30,9 +30,16 @@ async function run() {
     // const menu = database.collection("menu");
     
     const menuCollection = client.db("MealMatesDB").collection("menu");
+    const userCollection = client.db("MealMatesDB").collection("users");
     const reviewCollection = client.db("MealMatesDB").collection("reviews");
     const cartsCollection = client.db("MealMatesDB").collection("carts");
     
+    //users
+    app.post('/users', async(req, res)=>{
+      const user = req.body;
+      const result = await userCollection.insertOne(user);
+      res.send(result);
+    })
     //get menu collection all the data
     app.get('/menu', async(req, res)=>{
         const result = await menuCollection.find().toArray();
