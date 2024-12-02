@@ -12,7 +12,7 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const SignUp = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile, googleSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
     const onSubmit = data => {
@@ -54,7 +54,12 @@ const SignUp = () => {
 
             })
         }
-
+        const hadlegoogleLogin= ()=>{
+            googleSignIn()
+            .then(result =>{
+                console.log(result.user);
+            })
+        }
 
     // const handleLogin = (event) => {
     //     event.preventDefault();
@@ -130,15 +135,15 @@ const SignUp = () => {
                                     <p className='text-center '>Or sign up with</p>
                                 </div>
                                 <div className='flex justify-center items-center gap-x-12'>
-                                    <div className='w-10 h-10 border-2 border-black rounded-full flex justify-center items-center'>
-                                        <FaFacebookF />
-                                    </div>
-                                    <div className='w-10 h-10 border-2 border-black rounded-full flex justify-center items-center'>
-                                        <FaGoogle></FaGoogle>
-                                    </div>
-                                    <div className='w-10 h-10 border-2 border-black rounded-full flex justify-center items-center'>
-                                        <FaGithub></FaGithub>
-                                    </div>
+                                <button className='w-10 h-10 border-2 border-black rounded-full flex justify-center items-center'>
+                                    <FaFacebookF />
+                                </button>
+                                <button onClick={hadlegoogleLogin} className='w-10 h-10 border-2 border-black rounded-full flex justify-center items-center'>
+                                    <FaGoogle />
+                                </button>
+                                <button className='w-10 h-10 border-2 border-black rounded-full flex justify-center items-center'>
+                                    <FaGithub />
+                                </button>
 
                                 </div>
                             </form>

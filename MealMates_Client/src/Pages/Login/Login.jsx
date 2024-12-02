@@ -12,7 +12,7 @@ import Swal from 'sweetalert2'
 const Login = () => {
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
-    const { signIn } = useContext(AuthContext);
+    const { signIn, googleSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -48,6 +48,13 @@ const Login = () => {
                 console.log(error);
             });
     };
+
+    const hadlegoogleLogin= ()=>{
+        googleSignIn()
+        .then(result =>{
+            console.log(result.user);
+        })
+    }
 
     const handleCaptchaChange = (event) => {
         event.preventDefault(); // Prevent default behavior (if needed)
@@ -122,15 +129,15 @@ const Login = () => {
                                 <p className='text-center '>Or sign in with</p>
                             </div>
                             <div className='flex justify-center items-center gap-x-12'>
-                                <div className='w-10 h-10 border-2 border-black rounded-full flex justify-center items-center'>
+                                <button className='w-10 h-10 border-2 border-black rounded-full flex justify-center items-center'>
                                     <FaFacebookF />
-                                </div>
-                                <div className='w-10 h-10 border-2 border-black rounded-full flex justify-center items-center'>
+                                </button>
+                                <button onClick={hadlegoogleLogin} className='w-10 h-10 border-2 border-black rounded-full flex justify-center items-center'>
                                     <FaGoogle />
-                                </div>
-                                <div className='w-10 h-10 border-2 border-black rounded-full flex justify-center items-center'>
+                                </button>
+                                <button className='w-10 h-10 border-2 border-black rounded-full flex justify-center items-center'>
                                     <FaGithub />
-                                </div>
+                                </button>
                             </div>
                         </form>
                     </div>
