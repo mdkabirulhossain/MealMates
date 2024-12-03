@@ -15,6 +15,7 @@ const SignUp = () => {
     const { createUser, updateUserProfile, googleSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
+    
     const onSubmit = data => {
         console.log(data);
         createUser(data.email, data.password)

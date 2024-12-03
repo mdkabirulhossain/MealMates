@@ -8,6 +8,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2'
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Login = () => {
     const captchaRef = useRef(null);
@@ -15,6 +16,7 @@ const Login = () => {
     const { signIn, googleSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosPublic = useAxiosPublic();
 
     const from = location.state?.from?.pathname || "/";
     console.log(from)
@@ -49,10 +51,34 @@ const Login = () => {
             });
     };
 
+    // const hadlegoogleLogin= ()=>{
+    //     googleSignIn()
+    //     .then(result =>{
+    //         console.log(result.user);
+    //         const userInfo ={
+    //             email: user?.email,
+    //             name: ueser?.displayName,
+    //         }
+    //        axiosPublic.post('/users', userInfo)
+    //        .then(res =>{
+    //         console.log(res.data)
+    //         navigate(from, {replace: true});
+    //        })
+    //     })
+    // }
     const hadlegoogleLogin= ()=>{
         googleSignIn()
         .then(result =>{
             console.log(result.user);
+            const userInfo ={
+                            email: result?.user?.email,
+                            name: result?.user?.displayName,
+                        }
+                       axiosPublic.post('/users', userInfo)
+                       .then(res =>{
+                        console.log(res.data)
+                        navigate(from, {replace: true});
+                       })
         })
     }
 
