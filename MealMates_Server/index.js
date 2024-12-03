@@ -34,6 +34,8 @@ async function run() {
     const reviewCollection = client.db("MealMatesDB").collection("reviews");
     const cartsCollection = client.db("MealMatesDB").collection("carts");
     
+
+    
     //users
     app.post('/users', async(req, res)=>{
       const user = req.body;
@@ -48,6 +50,13 @@ async function run() {
       const result = await userCollection.insertOne(user);
       res.send(result);
     })
+
+    //get users data
+    app.get('/users', async(req, res)=>{
+      const result = await userCollection.find().toArray();
+      res.send(result);
+    })
+
     //get menu collection all the data
     app.get('/menu', async(req, res)=>{
         const result = await menuCollection.find().toArray();
