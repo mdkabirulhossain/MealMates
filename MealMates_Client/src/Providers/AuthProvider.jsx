@@ -36,6 +36,13 @@ const AuthProvider = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser=>{
             setUser(currentUser);
             console.log('current user', currentUser);
+            if(currentUser){
+                //get token and store client
+            }
+            else{
+                //TODO: remove token (if token stored in the client side: 
+                // Local storage, caching, in memory)
+            }
             setLoading(false);
         })
         return()=>{
