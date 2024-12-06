@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const jwt = require('jsonwebtoken');
 const port = process.env.PORT || 5000
 require('dotenv').config()
 
@@ -34,9 +35,15 @@ async function run() {
     const reviewCollection = client.db("MealMatesDB").collection("reviews");
     const cartsCollection = client.db("MealMatesDB").collection("carts");
     
+    //JWT related api
+    app.post('/jwt', async(req, res)=>{
+      const user = req.body;
+      const token = jwt.sign(user
+        , process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
 
-    
-    //users
+        res.send({token});//send token object
+    })
+    //users post api (all post get putch everything is api)
     app.post('/users', async(req, res)=>{
       const user = req.body;
       //Insert email if user doesn't exist:
@@ -57,9 +64,9 @@ async function run() {
       res.send(result);
     })
     //delete users
-    app.delete('/users', async(req, res)=>{
+    app.delete('/users/:id', async(req, res)=>{
       const id = req.params.id;
-      const query = {_id: new ObjectId(id)};
+      const query = {_id: new ObjectId(id)}
       const result = await userCollection.deleteOne(query);
       res.send(result);
     })
@@ -73,7 +80,7 @@ async function run() {
         },
       };
       const result = await userCollection.updateOne(filter, updateDoc);
-
+      res.send(result)
     })
 
     //get menu collection all the data
