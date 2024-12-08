@@ -50,7 +50,6 @@ async function run() {
       if(!req.headers.authorization){
         return res.status(401).send({message: 'Forbidden Access'})
       }
-
       //authorization have 2 part here one is barrier and next part is token
       const token = req.headers.authorization.split(' ')[1];
       //verify
@@ -84,6 +83,22 @@ async function run() {
       const result = await userCollection.find().toArray();
       res.send(result);
     })
+    //check is user Admin? api
+    app.get('/user/admin/:email', verifyToken, async(req, res)=>{
+      const email = req.params.email;
+      if(email !== req.decoded.email){
+        return res.status(403).send({message: 'unauthorized access'})
+      }
+
+      const query = {email: email};
+      const user = await userCollection.findOne(query);
+      let admin = false;
+      if(user){
+        admin = user?.role ==='admin';
+      }
+      res.send({admin})
+    })
+
     //delete users
     app.delete('/users/:id', async(req, res)=>{
       const id = req.params.id;
