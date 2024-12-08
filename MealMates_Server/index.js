@@ -46,8 +46,21 @@ async function run() {
 
     //Create Middlewares for token
     const verifyToken = (req, res, next)=>{
-      console.log(req.headers);
-      next();
+      console.log('Inside verify token',req.headers.authorization);
+      if(!req.headers.authorization){
+        return res.status(401).send({message: 'Forbidden Access'})
+      }
+
+      //authorization have 2 part here one is barrier and next part is token
+      const token = req.headers.authorization.split(' ')[1];
+      //verify
+      jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded)=> {
+        if(err){
+          return res.status(401).send({message: 'Forbidden Access'})
+        }
+        req.decoded = decoded;
+        next();
+      });
     }
     //users post api (all post get putch everything is api)
     app.post('/users', async(req, res)=>{
