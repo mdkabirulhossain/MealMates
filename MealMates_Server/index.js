@@ -43,8 +43,15 @@ async function run() {
 
         res.send({token});//send token object
     })
+
+    //Create Middlewares for token
+    const verifyToken = (req, res, next)=>{
+      console.log(req.headers);
+      next();
+    }
     //users post api (all post get putch everything is api)
     app.post('/users', async(req, res)=>{
+      
       const user = req.body;
       //Insert email if user doesn't exist:
       //We can do this many ways like(email uniqu, upsert, simple checking)
@@ -59,7 +66,8 @@ async function run() {
     })
 
     //get users data
-    app.get('/users', async(req, res)=>{
+    app.get('/users',verifyToken, async(req, res)=>{
+      
       const result = await userCollection.find().toArray();
       res.send(result);
     })
