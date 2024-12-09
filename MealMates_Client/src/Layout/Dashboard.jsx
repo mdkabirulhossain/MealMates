@@ -5,13 +5,13 @@ import { BiCommentDetail } from "react-icons/bi";
 import { IoMdMail, IoMdMenu } from "react-icons/io";
 import { GiShoppingBag } from "react-icons/gi";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
     const [cart] = useCart();
 
     //ToDo: get isAdmin value from database
-    const isAdmin = true;
-
+    const [isAdmin] = useAdmin();
     return (
         <div className="h-screen flex">
             {/* dashboard sidebar  */}
