@@ -12,7 +12,8 @@ const Dashboard = () => {
 
     //ToDo: get isAdmin value from database
     const [isAdmin] = useAdmin();
-    return (
+    //   const isAdmin = true;
+        return (
         <div className="h-screen flex">
             {/* dashboard sidebar  */}
             <div className="w-64 h-screen bg-orange-400">
