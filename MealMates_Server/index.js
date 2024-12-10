@@ -38,8 +38,7 @@ async function run() {
     //JWT related api
     app.post('/jwt', async(req, res)=>{
       const user = req.body;
-      const token = jwt.sign(user
-        , process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
 
         res.send({token});//send token object
     })
@@ -61,6 +60,18 @@ async function run() {
         next();
       });
     }
+
+    //Middleware  user verify admin after verify token
+    const verifyAdmin = async(req, res, next)=>{
+      const email = req.decoded.email;
+      const query = {email: email};
+      const user = await userCollection.findOne(query);
+      const isAdmin = user?.role === 'admin';
+      if(!isAdmin){
+        return res.status(403).send({message: 'forbiden access'})
+      }
+      next();
+    }
     //users post api (all post get putch everything is api)
     app.post('/users', async(req, res)=>{
       
@@ -78,15 +89,17 @@ async function run() {
     })
 
     //get users data
-    app.get('/users',verifyToken, async(req, res)=>{
-      
+    app.get('/users',verifyToken, verifyAdmin, async(req, res)=>{
+    
       const result = await userCollection.find().toArray();
       res.send(result);
     })
+    
     //check is user Admin? api
-    app.get('/user/admin/:email', verifyToken, async(req, res)=>{
+    app.get('/users/admin/:email', verifyToken, async(req, res)=>{
       const email = req.params.email;
-      if(email !== req.decoded.email){
+      console.log(req.params.email, req.decoded?.email)
+      if(email !== req.decoded?.email){
         return res.status(403).send({message: 'unauthorized access'})
       }
 
@@ -98,7 +111,30 @@ async function run() {
       }
       res.send({admin})
     })
-
+    // app.get('/users/admin/:email', verifyToken, async (req, res) => {
+    //   try {
+    //     const email = req.params.email;
+    //     console.log('Route handler: req.params.email:', email);
+    //     console.log('Decoded email:', req.decoded?.email);
+    
+    //     // Check for unauthorized access
+    //     if (!email || email !== req.decoded?.email) {
+    //       return res.status(403).send({ message: 'Unauthorized access' });
+    //     }
+    
+    //     // Query user from the database
+    //     const query = { email };
+    //     const user = await userCollection.findOne(query);
+    
+    //     // Check if user is admin
+    //     const admin = user?.role === 'admin';
+    //     res.send({ admin });
+    //   } catch (error) {
+    //     console.error('Error in admin route:', error.message);
+    //     res.status(500).send({ message: 'Internal server error' });
+    //   }
+    // });
+    
     //delete users
     app.delete('/users/:id', async(req, res)=>{
       const id = req.params.id;
