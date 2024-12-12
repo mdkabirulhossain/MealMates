@@ -57,7 +57,7 @@ import AdminRoute from "./AdminRoute";
       element:<PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
       children: [
 
-        //All are the normal users routes
+        //All are the normal users
         {
           path:'cart',
           element:<Cart></Cart>
@@ -66,11 +66,11 @@ import AdminRoute from "./AdminRoute";
         // All are the admin routes
         {
           path:'allusers',
-          element:<AdminRoute><AllUsers/></AdminRoute>
+          element:<AdminRoute> <AllUsers/> </AdminRoute>
         },
         {
           path:'additems',
-          element:<AdminRoute><AddItems/></AdminRoute>
+          element:<AdminRoute> <AddItems/> </AdminRoute>
         },
       ]
     },
