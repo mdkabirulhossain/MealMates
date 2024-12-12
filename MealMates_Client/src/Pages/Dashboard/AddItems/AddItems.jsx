@@ -1,9 +1,16 @@
 import React from 'react';
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const AddItems = () => {
     return (
         <div>
-            <h2>Hi this is Add Items page</h2>
+            <div>
+                <SectionTitle subHeading={"---What's new?---"}
+                    heading={"ADD AN ITEM"}
+                >
+
+                </SectionTitle>
+            </div>
         </div>
     );
 };
