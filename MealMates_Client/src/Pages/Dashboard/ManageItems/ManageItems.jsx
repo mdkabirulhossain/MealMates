@@ -2,6 +2,7 @@ import React from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import useMenu from '../../../hooks/useMenu';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const ManageItems = () => {
 
@@ -56,10 +57,12 @@ const ManageItems = () => {
                                         ${item.price}
                                     </td>
                                     <td>
+                                        <Link to={`/dashboard/updateitems/${item._id}`}>
                                         <button className="btn text-orange-600 btn-ghost btn-lg">
-
+                                            
                                             <FaEdit></FaEdit>
                                         </button>
+                                        </Link>
 
                                     </td>
                                     <th>
