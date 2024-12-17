@@ -161,7 +161,7 @@ async function run() {
         res.send(result);
     })
     //post menu data only user can able to add new item menu
-    app.post('/menu', async(req, res)=>{
+    app.post('/menu', verifyToken, verifyAdmin, async(req, res)=>{
       const item = req.body;
       const result = await menuCollection.insertOne(item);
       res.send(result);
