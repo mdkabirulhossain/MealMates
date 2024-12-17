@@ -2,12 +2,51 @@ import React from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import { useForm } from 'react-hook-form';
 import { FaUtensils } from "react-icons/fa";
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2'
+
+const imgbb_key = import.meta.env.VITE_imgbb_key
+const imgbb_hosting_api = `https://api.imgbb.com/1/upload?key=${imgbb_key}`
 
 const AddItems = () => {
     const { register, handleSubmit, reset } = useForm();
-    const onSubmit = (data) => {
+    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
+    const onSubmit = async(data) => {
         console.log(data);
-        
+        //image upload to imgbb and then get an url
+        const imageFile = {image: data.image[0]}
+        const res = await axiosPublic.post(imgbb_hosting_api, imageFile, {
+            headers:{
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        if(res.data.success){
+            const menuItem = {
+                name: data.name,
+                category: data.category,
+                price: parseFloat(data.price),
+                recipe: data.recipe,
+                image: res.data.data.display_url,
+            }
+            //send data in database
+            //here use axiosSecure bcz only admin can able to add item
+            const menuRes = await axiosSecure.post('/menu', menuItem);
+            console.log(menuRes.data);
+            if(menuRes.data.insertedId){
+                reset();
+                Swal.fire({
+                    position: "top",
+                    icon: "success",
+                    title: `${data.name} is added in menu Item`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
+
+        }
+        //console.log(res.data);
         
     }
     return (
@@ -20,7 +59,7 @@ const AddItems = () => {
                 </SectionTitle>
 
             </div>
-            <div>
+            <div className='bg-[#F3F3F3] px-5'>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <label className="form-control w-full my-6">
