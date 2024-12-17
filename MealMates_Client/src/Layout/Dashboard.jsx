@@ -33,7 +33,7 @@ const Dashboard = () => {
                                         ADD ITEMS</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/dashboard/manageItem'>
+                                    <NavLink to='/dashboard/manageitems'>
                                     <IoMdMenu></IoMdMenu>
                                         MANAGE ITEMS</NavLink>
                                 </li>
