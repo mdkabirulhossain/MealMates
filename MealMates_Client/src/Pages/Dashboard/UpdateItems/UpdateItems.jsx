@@ -6,8 +6,8 @@ import { useLoaderData } from 'react-router-dom';
 
 
 const UpdatItems = () => {
-    const info = useLoaderData();
-    console.log("Load",info);
+    const item = useLoaderData();
+    console.log("Load",item);
     
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = async(data) => {
