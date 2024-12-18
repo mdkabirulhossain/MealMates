@@ -80,7 +80,8 @@ import UpdateItems from "../Pages/Dashboard/UpdateItems/UpdateItems";
         },
         {
           path:'updateitems/:id',
-          element:<AdminRoute> <UpdateItems></UpdateItems> </AdminRoute>
+          element:<AdminRoute> <UpdateItems></UpdateItems> </AdminRoute>,
+          loader: ({ params }) => fetch(`http://localhost:5000/menu/${params.id}`),
         },
       ]
     },

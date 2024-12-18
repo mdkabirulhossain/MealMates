@@ -2,9 +2,13 @@ import React from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import { useForm } from 'react-hook-form';
 import { FaUtensils } from "react-icons/fa";
+import { useLoaderData } from 'react-router-dom';
 
 
 const UpdatItems = () => {
+    const info = useLoaderData();
+    console.log("Load",info);
+    
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = async(data) => {
         console.log(data);
