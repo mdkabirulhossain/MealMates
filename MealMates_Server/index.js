@@ -157,13 +157,28 @@ async function run() {
 
     //get menu collection all the data
     app.get('/menu', async(req, res)=>{
-        const result = await menuCollection.find().toArray();
-        res.send(result);
+      const result = await menuCollection.find().toArray();
+      res.send(result);
+  })
+    //get menu specific data
+    app.get('/menu/:id', async(req, res)=>{
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)};
+      const result = await menuCollection.findOne(query);
+      res.send(result);
     })
     //post menu data only user can able to add new item menu
     app.post('/menu', verifyToken, verifyAdmin, async(req, res)=>{
       const item = req.body;
       const result = await menuCollection.insertOne(item);
+      res.send(result);
+    })
+    //delete specific collection 
+    app.delete('/menu/:id', verifyToken, verifyAdmin, async(req, res)=>{
+      const id = req.params.id;
+      console.log(id);
+      const query = {_id: new ObjectId(id)}
+      const result = await menuCollection.deleteOne(query);
       res.send(result);
     })
     //get review collection all the data
