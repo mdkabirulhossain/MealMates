@@ -25,10 +25,11 @@ const AddItems = () => {
         if(res.data.success){
             const menuItem = {
                 name: data.name,
-                category: data.category,
-                price: parseFloat(data.price),
                 recipe: data.recipe,
                 image: res.data.data.display_url,
+                category: data.category,
+                price: parseFloat(data.price),
+                
             }
             //send data in database
             //here use axiosSecure bcz only admin can able to add item
@@ -85,7 +86,7 @@ const AddItems = () => {
                         <div className='w-full'>
                             <label className="form-control w-full">
                                 <label htmlFor="">Price*</label>
-                                <input {...register("price")} type="number" placeholder="Price" className="input input-bordered w-full" required />
+                                <input {...register("price")} type="text" placeholder="Price" className="input input-bordered w-full" required />
 
                             </label>
                         </div>
