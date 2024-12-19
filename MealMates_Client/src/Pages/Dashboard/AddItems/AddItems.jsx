@@ -13,29 +13,30 @@ const AddItems = () => {
     const { register, handleSubmit, reset } = useForm();
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
-    const onSubmit = async(data) => {
+
+    const onSubmit = async (data) => {
         console.log(data);
         //image upload to imgbb and then get an url
-        const imageFile = {image: data.image[0]}
+        const imageFile = { image: data.image[0] }
         const res = await axiosPublic.post(imgbb_hosting_api, imageFile, {
-            headers:{
+            headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
-        if(res.data.success){
+        if (res.data.success) {
             const menuItem = {
                 name: data.name,
                 recipe: data.recipe,
                 image: res.data.data.display_url,
                 category: data.category,
                 price: parseFloat(data.price),
-                
+
             }
             //send data in database
             //here use axiosSecure bcz only admin can able to add item
             const menuRes = await axiosSecure.post('/menu', menuItem);
             console.log(menuRes.data);
-            if(menuRes.data.insertedId){
+            if (menuRes.data.insertedId) {
                 reset();
                 Swal.fire({
                     position: "top",
@@ -43,12 +44,12 @@ const AddItems = () => {
                     title: `${data.name} is added in menu Item`,
                     showConfirmButton: false,
                     timer: 1500
-                  });
+                });
             }
 
         }
         //console.log(res.data);
-        
+
     }
     return (
         <div>
@@ -75,7 +76,7 @@ const AddItems = () => {
                         <div className='w-full'>
                             <label htmlFor="">Category*</label>
                             <select {...register("category")} className="select select-bordered w-full " required>
-                                
+
                                 <option value="salad">salad</option>
                                 <option value="pizza">pizza</option>
                                 <option value="soup">soup</option>
@@ -101,7 +102,7 @@ const AddItems = () => {
                         </textarea>
                     </div>
                     <div>
-                    <input {...register("image")} type="file" className="file-input w-full max-w-xs" />
+                        <input {...register("image")} type="file" className="file-input w-full max-w-xs" />
                     </div>
                     <div className="flex justify-center  mt-6">
                         <button className=" flex items-center py-4 px-5 text-white font-bold" style={{ background: "linear-gradient(90deg, #835D23 0%, #B58130 100%)" }}>Add Item <FaUtensils></FaUtensils> </button>
