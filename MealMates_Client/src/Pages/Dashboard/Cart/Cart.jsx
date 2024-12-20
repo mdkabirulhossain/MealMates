@@ -48,9 +48,13 @@ const Cart = () => {
                 <h2 className='text-2xl'>Items: {cart.length}</h2>
                 <h2 className='text-2xl'>Total Price: ${totalPrice} </h2>
                 
+               {
+                cart.length? 
                 <Link to='/dashboard/payment'>
                 <button className='bg-orange-400 px-4 py-1 rounded-md'>Pay</button>
-                </Link>
+                </Link> :
+                <><button disabled className='bg-orange-400 px-4 py-1 rounded-md'>Pay</button></>
+               }
             </div>
             <div className="overflow-x-auto">
                 <table className="table">
