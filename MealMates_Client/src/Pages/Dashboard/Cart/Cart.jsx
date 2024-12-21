@@ -53,7 +53,7 @@ const Cart = () => {
                 <Link to='/dashboard/payment'>
                 <button className='bg-orange-400 px-4 py-1 rounded-md'>Pay</button>
                 </Link> :
-                <><button disabled className='bg-orange-400 px-4 py-1 rounded-md'>Pay</button></>
+                <><button disabled  className='bg-orange-400 px-4 py-1 rounded-md'>Pay</button></>
                }
             </div>
             <div className="overflow-x-auto">
