@@ -67,7 +67,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
         },
         {
           path:'payment',
-          element:<Payment />
+          element:<Payment></Payment>
         },
 
         // All are the admin routes
