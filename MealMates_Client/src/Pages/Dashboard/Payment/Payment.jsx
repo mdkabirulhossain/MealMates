@@ -11,7 +11,7 @@ const Payment = () => {
         <div>
             <SectionTitle
                 heading={"Payment"}
-                subHeading={"---Please Pay ---"}
+                subHeading={"Please Pay ---"}
             >
 
             </SectionTitle>
