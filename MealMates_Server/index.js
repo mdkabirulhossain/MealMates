@@ -98,7 +98,7 @@ async function run() {
       const paymentResult = await paymentsCollection.insertOne(payment);
 
       //carefully delete each item from the cart
-      console.log('payment info:', payment)
+      // console.log('payment info:', payment)
       //write query for delete multiple cart items
       const query ={_id: {
         $in: payment.cartIds.map(id => new ObjectId (id))
@@ -106,6 +106,15 @@ async function run() {
       const deleteResult = await cartsCollection.deleteMany(query)
       
       res.send({paymentResult, deleteResult});
+    })
+    //payment history api
+    app.get('/payments/:email', verifyToken, async(req, res)=>{
+      const query = {email: req.params.email};
+      if(req.params.email !== req.decoded.email){
+        return res.status(403).send({message: 'forbidden access'})
+      }
+      const result = await paymentsCollection.find(query).toArray();
+      res.send(result);
     })
     //users post api (all post get putch everything is api)
     app.post('/users', async (req, res) => {
