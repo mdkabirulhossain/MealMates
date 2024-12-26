@@ -83,6 +83,19 @@ const CheckoutForm = () => {
                 setTransactionId(paymentIntent.id);
                 console.log(paymentIntent.id);
                 setError(''); // Clear errors on success
+
+                //now save the payment in the database
+                const payment = {
+                    email: user.email,
+                    price: TotalPrice,
+                    transactionId: paymentIntent.id,
+                    date: new Date(), //utc date conver using moment js
+                    cartIds: cart.map(item =>item._id),
+                    menuItemIds: cart.map(item => item.menuId),
+                    status:'pending'
+                }
+                const res = await axiosSecure.post('/payments', payment)
+                console.log("Pyament save", res.data);
             }
         } catch (err) {
             console.error('Error confirming card payment:', err);
