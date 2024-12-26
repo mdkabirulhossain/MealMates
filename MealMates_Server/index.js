@@ -39,6 +39,7 @@ async function run() {
     const userCollection = client.db("MealMatesDB").collection("users");
     const reviewCollection = client.db("MealMatesDB").collection("reviews");
     const cartsCollection = client.db("MealMatesDB").collection("carts");
+    const paymentsCollection = client.db("MealMatesDB").collection("payments");
 
     //JWT related api
     app.post('/jwt', async (req, res) => {
@@ -77,10 +78,11 @@ async function run() {
       }
       next();
     }
-    //Stripe payment intent
+    //Stripe payment intent api
     app.post('/create-payment-intent', async(req, res)=>{
       const {price} = req.body;
       const amount = parseInt(price * 100);
+      // console.log("Amoutn is",amount);
       const paymentIntent = await stripe.paymentIntents.create({
         amount: amount,
         currency:'usd',
@@ -89,6 +91,21 @@ async function run() {
       res.send({
         clientSecret: paymentIntent.client_secret
       })
+    })
+    //payment history store api
+    app.post('/payments', async(req, res)=>{
+      const payment = req.body;
+      const paymentResult = await paymentsCollection.insertOne(payment);
+
+      //carefully delete each item from the cart
+      console.log('payment info:', payment)
+      //write query for delete multiple cart items
+      const query ={_id: {
+        $in: payment.cartIds.map(id => new ObjectId (id))
+      }};
+      const deleteResult = await cartsCollection.deleteMany(query)
+      
+      res.send({paymentResult, deleteResult});
     })
     //users post api (all post get putch everything is api)
     app.post('/users', async (req, res) => {
