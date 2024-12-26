@@ -13,6 +13,7 @@ const CheckoutForm = () => {
     const axiosSecure = useAxiosSecure();
     const [cart, refetch] = useCart();
     const user = useAuth();
+    // console.log(user.user.email);
     
 
     // Calculate total price
@@ -88,7 +89,7 @@ const CheckoutForm = () => {
 
                 //now save the payment in the database
                 const payment = {
-                    email: user.email,
+                    email: user.user.email,
                     price: TotalPrice,
                     transactionId: paymentIntent.id,
                     date: new Date(), //utc date conver using moment js
@@ -150,7 +151,7 @@ const CheckoutForm = () => {
                         type="submit"
                         disabled={!stripe || !clientSecret}
                     >
-                        Pay
+                        Pay 
                     </button>
                 </div>
 
