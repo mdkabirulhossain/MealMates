@@ -7,7 +7,7 @@ const Popular = ({ items, title }) => {
 
     return (
         <div className='mb-24'>
-            <div className='grid md:grid-cols-2 gap-4 '>
+            <div className='grid px-2 md:grid-cols-2 gap-4 '>
                 {
                     items.map(item => <MenuItems
                         key={item._id}
