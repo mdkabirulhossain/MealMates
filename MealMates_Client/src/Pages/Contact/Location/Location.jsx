@@ -13,7 +13,7 @@ const Location = () => {
 
             </SectionTitle>
 
-            <div className='flex justify-between gap-x-6 mx-40 mb-16'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between gap-6 mb-16 mx-auto  lg:mx-40'>
                 <div className="flex flex-col justify-center items-center w-96 border-[#E8E8E8] border-2">
                     <button className="flex justify-center items-center bg-[#D1A054] text-white w-full py-2">
                         <BsTelephoneOutbound className="text-2xl" />
@@ -45,6 +45,7 @@ const Location = () => {
                         <h2 className="uppercase text-center font-bold">Working Hour</h2>
                         <p className="text-center">Mon - Fri: 08:00 - 22:00 <br />
                         Sat - Sun: 10:00 - 23:00</p>
+
                     </div>
                     </div>
                 </div>

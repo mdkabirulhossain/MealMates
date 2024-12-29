@@ -15,7 +15,7 @@ const ContactForm = () => {
             </SectionTitle>
             <div className="card bg-[#F3F3F3] w-full ">
                 <form className="card-body">
-                    <div className='flex gap-6'>
+                    <div className='flex flex-col gap-6 md:flex-row'>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text font-bold">Name*</span>
