@@ -92,16 +92,17 @@ async function run() {
         clientSecret: paymentIntent.client_secret
       })
     })
-    //payment history store api
+    //payment  api
     app.post('/payments', async(req, res)=>{
       const payment = req.body;
+      console.log(payment)
       const paymentResult = await paymentsCollection.insertOne(payment);
 
       //carefully delete each item from the cart
       // console.log('payment info:', payment)
       //write query for delete multiple cart items
       const query ={_id: {
-        $in: payment.cartIds.map(id => new ObjectId (id))
+        $in: payment.cartIds.map(id => new ObjectId(id))
       }};
       const deleteResult = await cartsCollection.deleteMany(query)
       
@@ -270,6 +271,72 @@ async function run() {
       const result = await cartsCollection.deleteOne(query);
       res.send(result)
     })
+  //admin stats or analytics
+    app.get('/admin-stats', verifyToken, verifyAdmin, async(req, res)=>{
+      const users = await userCollection.estimatedDocumentCount();
+      const menuItems = await menuCollection.estimatedDocumentCount();
+      //After complete the orders store data in payemnt section 
+      const orders = await paymentsCollection.estimatedDocumentCount();
+
+      //This is not the best way
+      // const payemnts = await paymentsCollection.find().toArray();
+      // const revenu = payemnts.reduce((total, item)=> total+ item.price, 0);
+
+      const result = await paymentsCollection.aggregate([{
+        $group:{
+          _id: null,
+          totalRevenue:{
+            $sum: '$price'
+          }
+        }
+      }]).toArray();
+      
+      const revenue = result.length > 0 ? result[0].totalRevenue : 0;
+
+      res.send({
+        users,
+        menuItems,
+        orders,
+        revenue,
+      })
+
+    })
+    //using aggregate pipeline
+    app.get('/order-stats', async (req, res) => {
+      const result = await paymentsCollection.aggregate([
+        {
+          $unwind: '$menuItemIds'
+        },
+        // Here menuItemsIds is not ObjectId that's why it's not it's give empty menuItems array after addin addFields it's gives currect value 
+        {
+          $addFields: {
+            menuItemIds: { $toObjectId: '$menuItemIds' } // Cast to ObjectId
+          }
+        },
+        {
+          $lookup: {
+            from: 'menu',
+            localField: 'menuItemIds',
+            foreignField: '_id',
+            as: 'menuItems'
+          }
+        },
+        {
+          $unwind: '$menuItems'
+        },
+        {
+          $group: {
+            _id: '$menuItems.category',
+            quantity: {$sum: 1},
+            revenue: { $sum: '$menuItems.price'}
+          }
+        }
+        
+      ]).toArray();
+    
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Database Connect Successfully");
