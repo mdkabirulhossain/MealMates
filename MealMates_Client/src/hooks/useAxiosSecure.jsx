@@ -2,46 +2,54 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useAuth from './useAuth';
 
+// Create a single Axios instance
 const axiosSecure = axios.create({
-  baseURL: 'http://localhost:5000'
-})
-const useAxiosSecure = () => {
-  const navigate = useNavigate();
-  const {logOut} = useAuth();
-  //request interceptor to add authorization for every secure call to the api
-  axiosSecure.interceptors.request.use(function (config) {
-    const token = localStorage.getItem('access-token')
-    console.log("Request stop by interceptors", token);
-    config.headers.authorization = `Bearer ${token}`
+  baseURL: 'http://localhost:5000', // Use environment variables for production
+});
 
-    // Do something before request is sent
-    return config;
-  }, function (error) {
-    // Do something with request error
-    return Promise.reject(error);
-  })
-
-  //Intercepts 401 and 403 response
-  axiosSecure.interceptors.response.use(function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
-    return response;
-  }, async(error)=> {
-    
-    const status = error.response.status;
-    console.log("Status error in the intercepto: ", status);
-    //For 401 or 403 logout the users and move the user to login page
-    // if(status === 401 || status === 403){
-    if(status === 401 || status === 403){
-      await logOut();
-      navigate('/login')
+// Interceptors should be registered once
+axiosSecure.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('access-token');
+    if (token) {
+      console.log('Request intercepted, token:', token);
+      config.headers.authorization = `Bearer ${token}`;
     }
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
+    return config;
+  },
+  (error) => {
+    console.error('Request error:', error);
     return Promise.reject(error);
-  })
-  
-  return axiosSecure;
-};
+  }
+);
+
+axiosSecure.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response) {
+      const { status } = error.response;
+      console.log('Status error in the interceptor:', status);
+
+      // Handle unauthorized (401) and forbidden (403) responses
+      if (status === 401 || status === 403) {
+        const { logOut } = useAuth(); // Ensure logOut is asynchronous
+        const navigate = useNavigate(); // Keep navigation in scope
+
+        try {
+          await logOut(); // Log the user out
+          navigate('/login'); // Redirect to the login page
+        } catch (logoutError) {
+          console.error('Error during logout:', logoutError);
+        }
+      }
+    } else {
+      console.error('No response object in error:', error);
+    }
+    return Promise.reject(error);
+  }
+);
+
+// Hook to use the Axios instance
+const useAxiosSecure = () => axiosSecure;
 
 export default useAxiosSecure;
