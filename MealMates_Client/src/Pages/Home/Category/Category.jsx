@@ -19,40 +19,40 @@ const Category = () => {
     return (
         <div>
             <SectionTitle
-                subHeading="---From 11:00am to 10:00pm---"
+                subHeading="From 11:00am to 10:00pm"
                 heading="Order Online"
             >
-            
+
             </SectionTitle>
             <Swiper
-        slidesPerView={4}
-        spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
-        className="mySwiper mb-24"
-      >
-        <SwiperSlide>
-                <img src={slide_img_01} alt="" />
-                <h3 className='text-4xl uppercase text-center text-white -mt-16'>Salads</h3>
-            </SwiperSlide>
-            <SwiperSlide>
-                <img src={slide_img_02} alt="" />
-                <h3 className='text-4xl uppercase text-center text-white -mt-16'>Pizzas</h3>
+                slidesPerView={4}
+                spaceBetween={30}
+                pagination={{
+                    clickable: true,
+                }}
+                modules={[Pagination]}
+                className="mySwiper mb-24"
+            >
+                <SwiperSlide>
+                    <img src={slide_img_01} alt="" />
+                    <h3 className='text-xl uppercase text-center text-white -mt-16 lg:text-4xl'>Salads</h3>
                 </SwiperSlide>
-            <SwiperSlide>
-                <img src={slide_img_03} alt="" />
-                <h3 className='text-4xl uppercase text-center text-white -mt-16'>soups</h3>
-            </SwiperSlide>
-            <SwiperSlide><img src={slide_img_04} alt="" />
-            <h3 className='text-4xl uppercase text-center text-white -mt-16'>Desserts</h3>
-            </SwiperSlide>
-            <SwiperSlide><img src={slide_img_05} alt="" />
-            <h3 className='text-4xl uppercase text-center text-white -mt-16'>Salads</h3>
-            </SwiperSlide>
-      </Swiper>
-            
+                <SwiperSlide>
+                    <img src={slide_img_02} alt="" />
+                    <h3 className='text-xl uppercase text-center text-white -mt-16 lg:text-4xl'>Pizzas</h3>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={slide_img_03} alt="" />
+                    <h3 className='text-xl uppercase text-center text-white -mt-16 lg:text-4xl'>soups</h3>
+                </SwiperSlide>
+                <SwiperSlide><img src={slide_img_04} alt="" />
+                    <h3 className='text-xl uppercase text-center text-white -mt-16 lg:text-4xl'>Desserts</h3>
+                </SwiperSlide>
+                <SwiperSlide><img src={slide_img_05} alt="" />
+                    <h3 className='text-xl uppercase text-center text-white -mt-16 lg:text-4xl'>Salads</h3>
+                </SwiperSlide>
+            </Swiper>
+
         </div>
     );
 };

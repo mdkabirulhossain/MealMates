@@ -63,7 +63,7 @@ const SingleCard = ({ item }) => {
         
     }
     return (
-        <div className="card card-compact bg-base-100 w-96 shadow-xl">
+        <div className="card card-compact bg-base-100 w-80 shadow-xl mx-auto md:w-96">
             <figure>
                 <img
                     src={image}

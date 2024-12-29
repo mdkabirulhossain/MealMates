@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom';
 const Feature = () => {
     return (
         <div className='feature-items bg-fixed bg-gray-500 bg-opacity-20'>
-            <div className='pt-32'>
+            <div className='pt-12 lg:pt-28'>
             <SectionTitle 
-            subHeading="---Check it out---"
+            subHeading="Check it out"
             heading="FROM OUR MENU"
             >
             </SectionTitle>
