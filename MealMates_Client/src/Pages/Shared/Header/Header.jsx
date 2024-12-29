@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from '../../../hooks/useCart';
+import useAdmin from '../../../hooks/useAdmin';
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
   const[cart] = useCart();
   const handleLogout = () => {
     logOut()
@@ -29,7 +31,17 @@ const Header = () => {
     <>
       <li className="uppercase"><Link to="/">Home</Link></li>
       <li className="uppercase"><Link to="/contact">Contact Us</Link></li>
-      <li className="uppercase"><Link to="/secret">Secret</Link></li>
+      {
+        //We also able to do using nested tarnarry operator
+        //user? true : false
+        //user? codition? "double true result" : single true resul 
+      }
+      {
+        user && isAdmin && <li className="uppercase"><Link to="/dashboard/adminHome">Dashboard</Link> </li>
+      }
+      {
+        user && !isAdmin && <li className="uppercase"><Link to="/dashboard/userHome">Dashboard</Link> </li>
+      }
       <li className="uppercase"><Link to="/menu">Our Menu</Link></li>
       <li className="uppercase"><Link to="/shop/salad">Our Shop</Link></li>
       <li className="uppercase"><Link to="/dashboard/cart">
