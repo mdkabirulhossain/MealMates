@@ -1,0 +1,15 @@
+/* Prevent text color change when active */
+.nav-item.active-link {
+    background-color: var(--primary-color);  /* Keep background color */
+    color: inherit;  /* Ensure text color doesn't change */
+  }
+  
+  .nav-item {
+    color: white; /* Set the default text color */
+  }
+  
+  /* Optional: Style for active nav link */
+  .nav-item.active-link a {
+    color: inherit; /* Ensure the link color stays the same as the text color */
+  }
+  

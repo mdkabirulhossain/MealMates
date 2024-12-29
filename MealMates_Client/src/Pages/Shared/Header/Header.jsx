@@ -1,22 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from '../../../hooks/useCart';
 import useAdmin from '../../../hooks/useAdmin';
+import './Header.css';
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isAdmin] = useAdmin();
-  const[cart] = useCart();
+  const [cart] = useCart();
+  const [activeNav, setActiveNav] = useState(""); // Track active nav item
+
   const handleLogout = () => {
     logOut()
       .then((userCredential) => {
-        // Signed up 
         const user = userCredential.user;
-        console.log(user)
-        // ...
-
+        console.log(user);
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -25,43 +25,78 @@ const Header = () => {
           timer: 1500
         });
       })
-      .catch(error => console.log(error))
-  }
+      .catch(error => console.log(error));
+  };
+
   const nav = (
     <>
-      <li className="uppercase"><Link to="/">Home</Link></li>
-      <li className="uppercase"><Link to="/contact">Contact Us</Link></li>
-      {
-        //We also able to do using nested tarnarry operator
-        //user? true : false
-        //user? codition? "double true result" : single true resul 
-      }
-      {
-        user && isAdmin && <li className="uppercase"><Link to="/dashboard/adminHome">Dashboard</Link> </li>
-      }
-      {
-        user && !isAdmin && <li className="uppercase"><Link to="/dashboard/userHome">Dashboard</Link> </li>
-      }
-      <li className="uppercase"><Link to="/menu">Our Menu</Link></li>
-      <li className="uppercase"><Link to="/shop/salad">Our Shop</Link></li>
-      <li className="uppercase"><Link to="/dashboard/cart">
-        <button className="btn">
+      <li
+        className={`uppercase nav-item ${activeNav === "home" ? "active-link" : ""}`}
+        onClick={() => setActiveNav("home")}
+      >
+        <Link to="/">Home</Link>
+      </li>
+      <li
+        className={`uppercase nav-item ${activeNav === "contact" ? "active-link" : ""}`}
+        onClick={() => setActiveNav("contact")}
+      >
+        <Link to="/contact">Contact Us</Link>
+      </li>
+      {user && isAdmin && (
+        <li
+          className={`uppercase nav-item ${activeNav === "adminDashboard" ? "active-link" : ""}`}
+          onClick={() => setActiveNav("adminDashboard")}
+        >
+          <Link to="/dashboard/adminHome">Dashboard</Link>
+        </li>
+      )}
+      {user && !isAdmin && (
+        <li
+          className={`uppercase nav-item ${activeNav === "userDashboard" ? "active-link" : ""}`}
+          onClick={() => setActiveNav("userDashboard")}
+        >
+          <Link to="/dashboard/userHome">Dashboard</Link>
+        </li>
+      )}
+      <li
+        className={`uppercase nav-item ${activeNav === "menu" ? "active-link" : ""}`}
+        onClick={() => setActiveNav("menu")}
+      >
+        <Link to="/menu">Our Menu</Link>
+      </li>
+      <li
+        className={`uppercase nav-item ${activeNav === "shop" ? "active-link" : ""}`}
+        onClick={() => setActiveNav("shop")}
+      >
+        <Link to="/shop/salad">Our Shop</Link>
+      </li>
+      <li
+        className={`uppercase nav-item ${activeNav === "cart" ? "active-link" : ""}`}
+        onClick={() => setActiveNav("cart")}
+      >
+        <Link to="/dashboard/cart">
           <FaShoppingCart />
           <div className="badge badge-secondary">+{cart.length}</div>
-        </button>
-      </Link></li>
-
-      {
-        user ?
-          <>
-            {/* <li className='uppecase'>{user.displayName}</li> */}
-            <li onClick={handleLogout} className="uppercase"><Link>Logout</Link></li>
-          </>
-          :
-          <>
-            <li className="uppercase"><Link to="/login">Login</Link></li>
-          </>
-      }
+        </Link>
+      </li>
+      {user ? (
+        <li
+          className={`uppercase nav-item ${activeNav === "logout" ? "active-link" : ""}`}
+          onClick={() => {
+            handleLogout();
+            setActiveNav("login");
+          }}
+        >
+          <Link>Logout</Link>
+        </li>
+      ) : (
+        <li
+          className={`uppercase nav-item ${activeNav === "login" ? "active-link" : ""}`}
+          onClick={() => setActiveNav("login")}
+        >
+          <Link to="/login">Login</Link>
+        </li>
+      )}
     </>
   );
 
@@ -100,13 +135,9 @@ const Header = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{nav}</ul>
         </div>
-
       </div>
-
-
     </div>
   );
 };
 
 export default Header;
-``
