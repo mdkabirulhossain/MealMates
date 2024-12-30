@@ -20,7 +20,7 @@ const React_Tabs = () => {
     const soup = menu.filter(item=>item.category ==="soup")
     const drinks = menu.filter(item=> item.category === "drinks")
     return (
-       <div className=' mx-14 text-center border-0 mb-10'>
+       <div className=' mx-1 text-center border-0 mb-10 lg:mx-14'>
          <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
             <TabList >
                 <Tab >SALAD</Tab>
