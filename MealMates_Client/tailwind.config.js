@@ -1,3 +1,8 @@
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+const daisyui = require('daisyui');
+
 
 export default {
   content: [
@@ -7,8 +12,6 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [
-    require('daisyui'),
-  ],
+  plugins: [daisyui],
 }
 
