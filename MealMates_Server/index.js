@@ -31,7 +31,8 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    //await client.connect(); this line comment out for deploy
+    //await client.connect();
     // const database = client.db("MealMatesDB");
     // const menu = database.collection("menu");
 
@@ -346,8 +347,9 @@ async function run() {
     });
 
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Database Connect Successfully");
+    // COMMENT OUT FOR DEPLOY 
+    // await client.db("admin").command({ ping: 1 });
+    // console.log("Database Connect Successfully");
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
