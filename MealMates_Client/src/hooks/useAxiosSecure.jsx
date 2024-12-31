@@ -4,7 +4,7 @@ import useAuth from './useAuth';
 
 // Create a single Axios instance
 const axiosSecure = axios.create({
-  baseURL: 'http://localhost:5000', // Use environment variables for production
+  baseURL: 'https://meal-mates-server-mu.vercel.app', // Use environment variables for production
 });
 
 // Interceptors should be registered once

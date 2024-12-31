@@ -28,7 +28,7 @@ const SingleCard = ({ item }) => {
                 image,
                 price
             }
-            // axios.post('http://localhost:5000/carts', cartItem)
+            // axios.post('https://meal-mates-server-mu.vercel.app/carts', cartItem)
             //Call axiossSecure hook
             axiosSecure.post('/carts', cartItem)
             .then(res =>{

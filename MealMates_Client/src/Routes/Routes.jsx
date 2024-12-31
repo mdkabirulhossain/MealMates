@@ -101,7 +101,7 @@ import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
         {
           path:'updateitems/:id',
           element:<AdminRoute> <UpdateItems></UpdateItems> </AdminRoute>,
-          loader: ({ params }) => fetch(`http://localhost:5000/menu/${params.id}`),
+          loader: ({ params }) => fetch(`https://meal-mates-server-mu.vercel.app/menu/${params.id}`),
         },
       ]
     },
