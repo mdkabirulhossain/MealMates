@@ -105,7 +105,9 @@ async function run() {
       const query ={_id: {
         $in: payment.cartIds.map(id => new ObjectId(id))
       }};
-      const deleteResult = await cartsCollection.deleteMany(query)
+      const deleteResult = await cartsCollection.deleteMany(query);
+
+      //send user email about payment confirmation
       
       res.send({paymentResult, deleteResult});
     })
